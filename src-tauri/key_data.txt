@@ -1,0 +1,5 @@
+{
+  "hmac_array": "81312a726498b60c1788f3ef18fe52011928cd0d212c8c5044e4ee94350f1e26",
+  "salt": "f4ffa99fd13f4173",
+  "iterations": 600000
+}
