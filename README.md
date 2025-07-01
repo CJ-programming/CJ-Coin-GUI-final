@@ -1,4 +1,4 @@
-# In order to run
+# In order to run:
 ## Install bun and npm through their respective websites:
 ### https://bun.sh/
 ### https://www.npmjs.com/
