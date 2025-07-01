@@ -60,19 +60,19 @@
 
 	import { exit } from '@tauri-apps/api/process';
 	import { goto } from '$app/navigation';
-    import { filePath } from '$lib/store/filePath';
+
+	import { filePath } from '$lib/store/filePath'; // environment variable for storing the filePath
+	import { open } from '@tauri-apps/api/dialog'
 
 	let show = false;
-
-	let inputPath = "";
-	
-	async function handleSubmit() {
-
-	}
 
 	onMount(() => {
 		show = true;
 	});
+
+	async function handleSubmit() {
+		filePath.set($filePath)
+	}
 
 	async function exitApp() {
         await exit();
@@ -80,6 +80,17 @@
 
 	async function navigate(page: string) {
 		goto(page); 
+	}
+
+	async function selectFile() {
+		const selected = await open({
+			multiple: false,
+			directory: true, // allow selecting folders
+		})
+		if (selected && typeof selected === 'string') {
+			filePath.set(selected);
+			console.log(selected);
+		}
 	}
 </script>
 
@@ -110,12 +121,13 @@
 						class="w-full bg-gray-800 rounded border border-gray-600 text-center"
 						placeholder="File location"
 						type="string"
-						bind:value={inputPath}
+						bind:value={$filePath}
 					/>
-
+					<button class="w-full flex-1 p-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded"
+					on:click={selectFile}>Browse</button>
 					<button
 						class="w-full flex-1 p-2 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded"
-						on:click={handleSubmit}
+						on:click={() => handleSubmit}
 					>
 					Submit
 					</button>

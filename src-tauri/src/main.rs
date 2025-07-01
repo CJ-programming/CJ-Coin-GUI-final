@@ -38,12 +38,20 @@ fn unit_tests() {
 }
 */
 
+mod crypto_utils;
+use crypto_utils::decrypt_file;
+use crypto_utils::generate_aes_key_to_file;
+use crypto_utils::generate_key_pair_to_file;
+
 fn main() {
     let context = tauri::generate_context!();
 
     tauri::Builder::default()
         .menu(tauri::Menu::os_default(&context.package_info().name))
         .invoke_handler(tauri::generate_handler![
+			crypto_utils::generate_aes_key_to_file,
+			crypto_utils::generate_key_pair_to_file,
+			crypto_utils::decrypt_file,
         ])
         .run(context)
         .expect("error while running tauri application");

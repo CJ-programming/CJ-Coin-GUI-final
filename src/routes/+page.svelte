@@ -14,10 +14,6 @@
 	async function exitApp() {
         await exit();
     }
-
-	async function navigate(page: string) {
-		goto(page); 
-	}
 </script>
 
 
@@ -57,8 +53,9 @@
 				<div class="flex flex-row justify-end w-sm gap-3 [&>*]:w-32 [&>*]:text-center
 				[&>*]:rounded [&>*]:transition [&>*]:duration-200 [&>*]:shadow-md [&>*]:hover:shadow-lg">
 					<button on:click={exitApp} class="bg-red-600 hover:bg-red-700">Cancel</button> <!--Exits out of the application-->
-					<button on:click={() => navigate("/choose_file_location")}
-					class="bg-green-600 hover:bg-green-700 font-semibold">Next</button> <!--Goes to the next step of hte installation-->
+					<button on:click={() => goto("/choose_file_location")}
+						class="bg-green-600 hover:bg-green-700 font-semibold">
+						Next</button> <!--Goes to the next step of hte installation-->
 				</div>
 			</div>
 		{/if}

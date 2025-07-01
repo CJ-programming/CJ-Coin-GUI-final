@@ -116,14 +116,19 @@
 
 	import { exit } from '@tauri-apps/api/process';
 	import { goto } from '$app/navigation';
-    import { filePath } from '$lib/store/filePath';
+	
+    import { password } from '$lib/store/password'; // stored securely on the server side, to uphold password security
+    import { generate_aes_key, generate_key_pair } from '$lib/crypto';
+	import { decrypt_file } from '$lib/crypto'
+
+	import { filePath } from '$lib/store/filePath';
 
 	let show = false;
-
-	let inputPath = "";
 	
 	async function handleSubmit() {
-
+		generate_aes_key($filePath + "aes_key_data.json", $password, 10_000) // `$` for server environment variables
+		let hex_key = await decrypt_file($filePath + "aes_key_data.json", $filePath + "key_pair_data.json", $password)
+		generate_key_pair($filePath + "key_pair_data.json", hex_key)
 	}
 
 	onMount(() => {
@@ -166,7 +171,7 @@
 						class="w-full bg-gray-800 rounded border border-gray-600 text-center"
 						placeholder="Password"
 						type="password"
-						bind:value={inputPath}
+						bind:value={$password}
 					/>
 
 					<button
