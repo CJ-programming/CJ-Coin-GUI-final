@@ -3,7 +3,7 @@
 ### https://bun.sh/
 ### https://www.npmjs.com/
 ## Run the following commands:
-`git clone https://github.com/CJ-programming/CJ-Coin-GUI-final/`
+`git clone https://github.com/CJ-programming/CJ-Coin-GUI-final.git`
 
 `cd CJ-Coin-GUI-final`
 
