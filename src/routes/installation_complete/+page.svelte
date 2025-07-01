@@ -181,7 +181,7 @@
 		{#if show}
 			<div class="flex flex-row items-center text-center gap-3 rounded justify-end w-sm [&>*]:w-32 [&>*]:text-center [&>*]:rounded [&>*]:transition [&>*]:duration-300 [&>*]:shadow-md [&>*]:hover:shadow-lg">
 				<button on:click={exitApp} class="bg-red-600 hover:bg-red-700">Cancel</button>
-				<button on:click={() => navigate("/choose_password")} class="bg-blue-600 hover:bg-blue-700">Back</button>
+				<button on:click={() => history.back()} class="bg-blue-600 hover:bg-blue-700">Back</button>
 				<button on:click={() => navigate("/wallet_info")} class="bg-green-600 hover:bg-green-700 font-semibold">Finish</button>
 			</div>
 		{/if}
